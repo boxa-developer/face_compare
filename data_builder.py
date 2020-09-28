@@ -32,6 +32,7 @@ class FaceCompare:
         super(FaceCompare, self).__init__()
         self.detector = dlib.get_frontal_face_detector()
         self.predictor = dlib.shape_predictor(args['predictor'])
+        # self.gen_predictor = dlib.shape_predictor('models/dnn_gender_classifier_v1.dat')
         self.face_rec = dlib.face_recognition_model_v1(args['model'])
 
     def compute_descriptor(self, filename):
@@ -40,6 +41,7 @@ class FaceCompare:
         # shape = self.predictor(img, detections[0])
         faces = dlib.full_object_detections()
         for detection in detections:
+            print(detection)
             faces.append(self.predictor(img, detection))
         face_ds = []
         for i in range(len(faces)):

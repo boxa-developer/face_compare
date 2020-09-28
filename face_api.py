@@ -28,7 +28,7 @@ def index():
 
 @app.route('/compare/', methods=['GET'])
 def compare():
-    # face1 = request.args.get('f1')
+    face1 = request.args.get('f1')
     face2 = request.args.get('f2')
     start = default_timer()
     f1 = [
@@ -162,7 +162,7 @@ def compare():
       0.016087979078292847
     ]
     result = data_builder.compute_similarity(
-        f1,
+        face_rec_object.compute_descriptor(face1),
         face_rec_object.compute_descriptor(face2)
     )
     stop = default_timer()
